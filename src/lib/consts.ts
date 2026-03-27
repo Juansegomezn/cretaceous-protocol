@@ -16,7 +16,7 @@ export const UI_MESSAGES = {
 export const GAME_CONFIG = {
   IMAGE: {
     DEFAULT_PROMPT: 'escena de supervivencia prehistórica estilo pixel art 16-bit',
-    SEPARATOR: 'IMAGEN:'
+    SEPARATOR: 'IMAGEN: '
   },
   MODEL_SETTINGS: {
     TEMPERATURE: 0.7,

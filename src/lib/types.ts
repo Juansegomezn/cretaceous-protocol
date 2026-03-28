@@ -15,7 +15,7 @@ export interface GameMessage {
 export interface GeneratedImage {
   base64Data: string;
   mediaType: string;
-  uint8ArrayData: Uint8Array;
+  uint8ArrayData: Uint8Array; 
 }
 
 export interface ConversationMessage {
@@ -28,6 +28,10 @@ export interface GenerateStoryRequest {
   userMessage: string;
   conversationStory: ConversationMessage[];
   isNewGame: boolean;
+}
+
+export interface GenerateImageRequest {
+  imagePrompt: string;
 }
 
 export interface GenerateStoryResponse {

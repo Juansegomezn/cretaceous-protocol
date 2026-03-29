@@ -13,8 +13,9 @@ export interface GameMessage {
 }
 
 export interface GeneratedImage {
-  base64Data: string;
-  mediaType: string;
+  description: string;
+  base64Data?: string;
+  mediaType?: string;
   uint8ArrayData: Uint8Array; 
 }
 

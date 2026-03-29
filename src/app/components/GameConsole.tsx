@@ -22,7 +22,7 @@ export default function GameConsole() {
       {/* Messages Container */}
       <div 
         ref={scrollRef}
-        className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-green-900 scrollbar-track-black"
+        className="flex-1 overflow-y-scroll p-6 space-y-6 custom-terminal-scroll"
       >
         {messages.map((msg) => (
           <div key={msg.id} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>

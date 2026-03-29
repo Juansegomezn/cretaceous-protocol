@@ -3,7 +3,7 @@ import GameConsole from "./components/GameConsole";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#050505] p-4 md:p-12 flex flex-col items-center">
+    <main className="min-h-screen bg-[#050505] p-4 md:p-8 flex flex-col items-center">
       <div className="w-full max-w-5xl">
         <GameConsole />
       </div>

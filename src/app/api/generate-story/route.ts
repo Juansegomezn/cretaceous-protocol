@@ -9,12 +9,10 @@ export async function POST(request: NextRequest) {
   try {
     const { userMessage, conversationStory, isNewGame } : GenerateStoryRequest = await request.json();
 
-    let prompt:string = GAME_PROMPTS.INITIAL_STORY;
-
-    if (!isNewGame) {
-      let historyText = conversationStory.map((message) => `${message.role}: ${message.content}`).join('\n');
-      prompt = GAME_PROMPTS.CONTINUE_STORY(historyText, userMessage);
-    }
+    let prompt:string = isNewGame 
+      ? GAME_PROMPTS.INITIAL_STORY 
+      : GAME_PROMPTS.CONTINUE_STORY(conversationStory.map(m => `${m.role}: ${m.content}`).join('\n'), userMessage)
+    ;
 
     const { text } = await generateText({
       model: google('gemini-2.5-flash-lite'),
@@ -23,8 +21,25 @@ export async function POST(request: NextRequest) {
     const [ story, imagePrompt ] = text.split(GAME_CONFIG.IMAGE.SEPARATOR);
     
     return NextResponse.json({ story, imagePrompt });
-  } catch (error) {
-    console.error('Error parsing request body', error);
-    return NextResponse.error();
+  } catch (error: any) {
+    const lastError = error.lastError || error;
+    const statusCode = lastError.statusCode || lastError.status;
+
+    console.log('Status Code Detectado:', statusCode);
+
+    if (statusCode === 429) {
+      return NextResponse.json({ 
+        story: "⚠️[SISTEMA]: Se ha agotado la energía del satélite de comunicaciones. Por favor, prueba en otro momento.", 
+        imagePrompt: { 
+          description: "emergency terminal broadcast, red signal lost message, green glitched CRT static, dark background" 
+        } 
+      }, { status: 200 });
+    }
+
+    console.error('Fatal Error:', error);
+    return NextResponse.json({ 
+      story: "❌[ERROR CRÍTICO]: Fallo en el núcleo de datos del Protocolo. Reinicia el sistema.", 
+      imagePrompt: { description: "darkness, terminal error screen" } 
+    }, { status: 200 });
   }
 }

@@ -1,6 +1,7 @@
 'use client';
 import { useGame } from "../hooks/useGame";
 import { useEffect, useRef } from "react";
+import { Typewriter } from "./TypeWritter";
 
 export default function GameConsole() {
   const { messages, input, isLoading, handleSubmit, handleInputChange } = useGame();
@@ -30,11 +31,15 @@ export default function GameConsole() {
             <div className={`max-w-[80%] p-4 rounded-lg ${
               msg.role === 'user' 
               ? 'bg-green-900/30 text-green-100 border border-green-700/50' 
-              : 'bg-slate-900/50 text-green-400 border border-slate-700/50'
+              : 'bg-slate-900/50 text-green-400 border border-slate-700/50 shadow-[inset_0_0_10px_rgba(0,0,0,0.5)]'
             }`}>
-              <p className="leading-relaxed whitespace-pre-wrap">
-                {msg.role === 'user' ? `> ${msg.content}` : msg.content}
-              </p>
+              <div className="leading-relaxed whitespace-pre-wrap">
+                {msg.role === 'user' ? (
+                  `> ${msg.content}`
+                ) : (
+                  <Typewriter text={msg.content} />
+                )}
+              </div>
             </div>
             {/* Async Image Rendering */}
             {msg.role === 'assistant' && (

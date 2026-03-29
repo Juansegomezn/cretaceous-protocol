@@ -127,3 +127,10 @@
     @apply font-sans;
   }
 }
+
+@layer utilities {
+  .pixelated {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+}

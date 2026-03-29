@@ -38,16 +38,16 @@ export default function GameConsole() {
             </div>
             {/* Async Image Rendering */}
             {msg.role === 'assistant' && (
-              <div className="mt-4 w-full max-w-lg aspect-video rounded border-2 border-green-900/30 overflow-hidden bg-slate-950">
+              <div className="mt-4 min-w-100 max-w-full h-100 rounded border-2 border-green-900/30 overflow-hidden bg-slate-950">
                 {msg.imageLoading ? (
-                  <div className="h-full flex items-center justify-center animate-pulse text-green-800 text-sm">
-                    RECONSTRUYENDO SEÑAL VISUAL...
+                  <div className="h-full px-4 flex items-center justify-center animate-pulse text-green-800 text-sm">
+                    PROCESANDO SEÑAL VISUAL...
                   </div>
                 ) : msg.image ? (
                   <img 
                     src={msg.image} 
                     alt="Visual Feed" 
-                    className="w-full h-full object-cover pixelated animate-in fade-in zoom-in duration-700"
+                    className="h-full pixelated animate-in fade-in zoom-in duration-700"
                   />
                 ) : null}
               </div>

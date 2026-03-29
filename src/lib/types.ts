@@ -16,7 +16,7 @@ export interface GeneratedImage {
   description: string;
   base64Data?: string;
   mediaType?: string;
-  uint8ArrayData: Uint8Array; 
+  uint8ArrayData?: Uint8Array; 
 }
 
 export interface ConversationMessage {

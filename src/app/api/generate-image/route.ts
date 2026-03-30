@@ -11,18 +11,19 @@ export async function POST(request: NextRequest) {
 
     const hf = new HfInference(token);
     const { imagePrompt } = await request.json();
-    const fullPrompt = GAME_PROMPTS.GENERATE_IMAGE(imagePrompt);
+    const promptText = typeof imagePrompt === 'object' ? imagePrompt.description : imagePrompt;
+    const fullPrompt = GAME_PROMPTS.GENERATE_IMAGE(promptText);
 
-    const response = await hf.textToImage({
+    const response = (await hf.textToImage({
       model: "stabilityai/stable-diffusion-xl-base-1.0", 
       inputs: fullPrompt,
-    });
+    })) as unknown as Blob;
 
-    const buffer = Buffer.from(await response.arrayBuffer());
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
     const base64Image = `data:image/png;base64,${buffer.toString('base64')}`;
 
     return NextResponse.json({ image: base64Image });
-
   } catch (error: any) {
     console.error('Visual Protocol Error:', error.message);
     

@@ -1,36 +1,184 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ CRETACEOUS PROTOCOL
 
-## Getting Started
+**A narrative survival terminal interface powered by AI**
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+████████████████████████████████████████████████████████████████
+█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+█░  CRETACEOUS PROTOCOL v1.0  |  SECTOR SURVIVAL MODE ACTIVE  ░█
+█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+████████████████████████████████████████████████████████████████
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Cretaceous Protocol is an immersive narrative RPG experience where survival, choice, and AI-generated storytelling converge. Every decision shapes your journey through a primitive world abundant with danger and wonder. Real-time generative imagery adapts to your narrative context, while a CRT-inspired terminal aesthetic intensifies the narrative immersion.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Status:** Operational | **Classification:** Full-Stack Next.js Narrative Engine
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## THE PROTOCOL: Core Features
 
-To learn more about Next.js, take a look at the following resources:
+### Adaptive Narrative Engine
+- **Dynamic Story Generation** – Real-time narrative evolution based on user actions via Google Gemini 2.5 Flash Lite
+- **Contextual Continuity** – Prompt engineering maintains narrative coherence across extended gameplay sessions
+- **Failure State Integration** – API errors seamlessly woven into the narrative ("Satellite Signal Lost")
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Visual Synthesis
+- **Pixel Art Generation** – Automatic image synthesis via Hugging Face Inference (16-bit aesthetic)
+- **Cinematic Lighting** – Crafted prompts inject mood, atmosphere, and visual consistency
+- **Asynchronous Loading States** – "Processing visual signal..." feedback during generation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Terminal Experience
+- **Typewriter Effect** – Text unfolds character-by-character for narrative immersion
+- **Intelligent Scrolling** – Automatic viewport management for optimal readability
+- **System Alerts** – CRT scanlines and Phosphor Green aesthetic evoke classic terminal interfaces
+- **Custom Animation** – Framer Motion transitions for UI interactions
 
-## Deploy on Vercel
+### Narrative Resilience
+- **API Quota Handling** – Graceful degradation with in-world narrative explanations
+- **State Persistence** – User progress tracked through game session lifecycle
+- **Message History** – Complete conversation log for narrative reference
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## TECH STACK
+
+### Frontend Framework
+- **Next.js 16.1** – App Router architecture with React 19
+- **TypeScript** – Strong type safety across codebase
+- **Tailwind CSS 4** – Utility-first styling with Phosphor Green Terminal Theme
+- **Framer Motion** – Smooth transitions and CRT effect animations
+- **Lucide Icons** – Minimal icon library for terminal-style UI
+
+### AI & Generative Services
+- **Vercel AI SDK** – Unified interface for LLM streaming and interactions
+- **Google Gemini 2.5 Flash Lite** – Fast, efficient narrative generation
+- **Hugging Face Inference API** – Pixel art image synthesis (Stable Diffusion variant)
+
+### Development & Quality
+- **Biome** – Unified linting, formatting, and code analysis
+- **TypeScript 5** – Next-generation type system
+- **Node.js 20+** – Runtime environment
+
+---
+
+## SYSTEM ARCHITECTURE
+
+### Project Structure
+```
+src/
+├── app/
+│   ├── layout.tsx              # Root layout with global styling
+│   ├── page.tsx                # Main game interface entry point
+│   ├── globals.css             # Terminal aesthetic styles
+│
+│   ├── api/
+│   │   ├── generate-story/     # Gemini endpoint (narrative synthesis)
+│   │   └── generate-image/     # Hugging Face endpoint (visual synthesis)
+│   ├── components/
+│       ├── GameConsole.tsx     # Primary UI container & state orchestration
+│       └── Typewriter.tsx      # Character-by-character text renderer
+│   └── hooks/
+│       └── useGame.ts          # Central game state machine
+│            ├── Message management
+│            ├── API fetch orchestration
+│            ├── Session lifecycle
+│            └── Error handling
+├── lib/
+│   ├── consts.ts               # Configuration constants
+│   ├── prompts.ts              # Session system prompts
+│   │   ├── INITIAL_STORY       # Sector entry bootstrap
+│   │   ├── CONTINUE_STORY      # Conversational context injection
+│   │   └── GENERATE_IMAGE      # Visual synthesis directives
+│   ├── types.ts                # TypeScript interfaces
+│   └── utils.ts                # Utility functions
+└── public/                     # Static assets
+```
+
+### Prompt Engineering Strategy
+- **INITIAL_STORY** – Establishes Cretaceous sector context and survival stakes
+- **CONTINUE_STORY** – Maintains narrative thread while injecting prior context windows
+- **GENERATE_IMAGE** – Specifies 16-bit pixel art style, cinematic framing, and thematic consistency
+
+### API Flow
+```
+User Action
+    ↓
+GameConsole → useGame Hook
+    ↓
+Validates Input & Prepares Prompt
+    ↓
+/api/generate-story (GET)  &  /api/generate-image (GET)
+    ↓
+Stream Response → Typewriter → Terminal Display
+    ↓
+Update Message history & Re-render
+```
+
+### State Management
+The `useGame` hook centralizes:
+- Message queue (user inputs + AI responses)
+- Loading states (story generation, image synthesis)
+- Session metadata (game phase, narrative context)
+- Error boundaries with narrative redirection
+
+---
+
+## INSTALLATION & QUICKSTART
+
+### Prerequisites
+- **Node.js** 20.x or higher
+- **npm** or **pnpm**
+- Active API keys for Google Gemini and Hugging Face
+
+### Step 1: Clone Repository
+```bash
+git clone https://github.com/Juansegomezn/cretaceous-protocol.git
+cd cretaceous-protocol
+```
+
+### Step 2: Environment Configuration
+Create `.env.local` in the project root:
+```env
+GOOGLE_GENERATIVE_AI_API_KEY=your_google_gemini_api_key
+HF_TOKEN=your_hugging_face_inference_api_token
+```
+
+Obtain keys from:
+- [Google AI Studio](https://aistudio.google.com) – Gemini API
+- [Hugging Face](https://huggingface.co/settings/tokens) – Inference API token
+
+### Step 3: Install Dependencies
+```bash
+npm install
+```
+
+### Step 4: Launch Development Server
+```bash
+npm run dev
+```
+
+Navigate to `http://localhost:3000` in your browser. The Cretaceous sector awaits.
+
+### Step 5: Production Build
+```bash
+npm run build
+npm run start
+```
+
+### Code Quality
+Run Biome for formatting and linting:
+```bash
+npm run lint      # Check issues
+npm run format    # Auto-fix formatting
+```
+
+---
+
+## NARRATIVE DESIGN PHILOSOPHY
+
+Cretaceous Protocol merges procedural storytelling with thematic consistency. Each prompt layer—from entry narrative to image synthesis to error states—maintains a cohesive sci-fi/survival atmosphere. The terminal interface reinforces player agency through a command-like interaction model, while real-time generative content ensures unique experiences across playthroughs.
+
+---
+
+*Made by [Juan Sebastian Gomez Ayala](https://github.com/Juansegomezn)*

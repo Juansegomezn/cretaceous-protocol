@@ -53,7 +53,7 @@ Cretaceous Protocol is an immersive narrative RPG experience where survival, cho
 ### AI & Generative Services
 - **Vercel AI SDK** – Unified interface for LLM streaming and interactions
 - **Google Gemini 2.5 Flash Lite** – Fast, efficient narrative generation
-- **Hugging Face Inference API** – Pixel art image synthesis (Stable Diffusion variant)
+- **Pollinations AI (OpenAI-compatible)** – High-fidelity image synthesis using the **Flux** model.
 
 ### Development & Quality
 - **Biome** – Unified linting, formatting, and code analysis
@@ -108,7 +108,7 @@ GameConsole → useGame Hook
     ↓
 Validates Input & Prepares Prompt
     ↓
-/api/generate-story (GET)  &  /api/generate-image (GET)
+/api/generate-story (POST)  &  /api/generate-image (POST)
     ↓
 Stream Response → Typewriter → Terminal Display
     ↓
@@ -129,7 +129,7 @@ The `useGame` hook centralizes:
 ### Prerequisites
 - **Node.js** 20.x or higher
 - **npm** or **pnpm**
-- Active API keys for Google Gemini and Hugging Face
+- Active API keys for Google Gemini and Pollination
 
 ### Step 1: Clone Repository
 ```bash
@@ -141,7 +141,7 @@ cd cretaceous-protocol
 Create `.env.local` in the project root:
 ```env
 GOOGLE_GENERATIVE_AI_API_KEY=your_google_gemini_api_key
-HF_TOKEN=your_hugging_face_inference_api_token
+POLLINATIONS_API_KEY=your_pollinations_api_token
 ```
 
 Obtain keys from:

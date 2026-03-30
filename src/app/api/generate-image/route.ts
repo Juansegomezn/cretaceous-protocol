@@ -1,25 +1,25 @@
-import { HfInference } from "@huggingface/inference";
+import { InferenceClient  } from "@huggingface/inference";
 import { type NextRequest, NextResponse } from "next/server";
 import { GAME_PROMPTS } from "@/lib/prompts";
 
 export async function POST(request: NextRequest) {
   try {
-    const token = process.env.HF_TOKEN;
-    if (!token) {
+    if (!process.env.HF_TOKEN) {
       throw new Error("Protocolo fallido: Falta HF_TOKEN en el entorno.");
     }
 
-    const hf = new HfInference(token);
+    const client = new InferenceClient(process.env.HF_TOKEN);
     const { imagePrompt } = await request.json();
     const promptText = typeof imagePrompt === 'object' ? imagePrompt.description : imagePrompt;
     const fullPrompt = GAME_PROMPTS.GENERATE_IMAGE(promptText);
 
-    const response = (await hf.textToImage({
+    const image = (await client.textToImage({
+      provider: "hf-inference",
       model: "stabilityai/stable-diffusion-xl-base-1.0", 
       inputs: fullPrompt,
     })) as unknown as Blob;
 
-    const arrayBuffer = await response.arrayBuffer();
+    const arrayBuffer = await image.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     const base64Image = `data:image/png;base64,${buffer.toString('base64')}`;
 

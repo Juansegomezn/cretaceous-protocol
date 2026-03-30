@@ -18,7 +18,13 @@ export async function POST(request: NextRequest) {
       model: google('gemini-2.5-flash-lite'),
       prompt
     })
-    const [ story, imagePrompt ] = text.split(GAME_CONFIG.IMAGE.SEPARATOR);
+
+    const parts = text.split(GAME_CONFIG.IMAGE.SEPARATOR);
+    const story = parts[0]?.trim() || "Comunicación interrumpida...";
+    
+    const imagePrompt = {
+      description: parts[1]?.trim() || "cinematic prehistoric landscape, jungle, mist"
+    };
     
     return NextResponse.json({ story, imagePrompt });
   } catch (error: any) {

@@ -142,6 +142,15 @@ export function useGame() {
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const textarea = e.target;
+    textarea.style.height = 'auto';
+    
+    // Define height limit (approx 24px per line * 4 = 96px)
+    const maxHeight = 96; 
+    const scrollHeight = textarea.scrollHeight;
+
+    textarea.style.height = `${Math.min(scrollHeight, maxHeight)}px`;
+
     setInput(e.target.value)
   }
 

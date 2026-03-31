@@ -16,11 +16,11 @@ export default function GameConsole() {
   return (
     <div className="flex flex-col h-[90vh] max-w-4xl mx-auto bg-black border-2 border-green-900/50 rounded-lg shadow-[0_0_20px_rgba(34,197,94,0.2)] overflow-hidden font-mono">
       {/* System Header */}
-      <div className="bg-green-900/20 p-2 border-b border-green-900/50 flex justify-between text-xs text-green-500">
+      <div className="bg-green-900/20 p-2 border-b border-green-900/50 flex justify-between items-center text-xs text-green-500">
         <span>SISTEMA: CRETACEOUS_PROTOCOL_V1.0</span>
         <button 
           onClick={resetGame}
-          className="text-[10px] px-2 border border-red-900/50 text-red-700 hover:bg-red-900 hover:text-white transition-colors uppercase font-bold cursor-pointer"
+          className="text-[15px] px-2 border border-red-900/50 text-red-700 hover:bg-red-900 hover:text-white transition-colors uppercase font-bold cursor-pointer"
         >
           [ Reiniciar Protocolo ]
         </button>
@@ -73,25 +73,26 @@ export default function GameConsole() {
       </div>
       {/* Command Input */}
       <form onSubmit={handleSubmit} className="p-4 bg-green-900/10 border-t border-green-900/50">
-        <div className="flex gap-3">
+        <div className="flex gap-3 items-center">
           <span className="text-green-500 py-2">{'>'}</span>
           <textarea
             value={input}
             onChange={handleInputChange}
-            placeholder="Introduce comando de acción..."
-            className="flex-1 bg-transparent border-none outline-none text-green-400 placeholder:text-green-900 resize-none py-2"
+            placeholder="Escribe tu siguiente acción..."
+            className="w-full bg-transparent border-none outline-none text-green-500 resize-none py-2 px-1 font-mono leading-6 custom-terminal-scroll"            
             rows={1}
             onKeyDown={(e) => {
               if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 handleSubmit(e as any);
+                (e.target as HTMLTextAreaElement).style.height = 'auto';
               }
             }}
           />
           <button 
             type="submit" 
             disabled={isLoading || !input.trim()}
-            className="px-4 py-2 bg-green-900/40 text-green-500 border border-green-700 hover:bg-green-800/50 disabled:opacity-30 transition-all uppercase text-xs font-bold"
+            className="px-4 py-2 max-h-10 bg-green-900/40 text-green-500 border border-green-700 hover:bg-green-800/50 disabled:opacity-30 transition-all uppercase text-xs font-bold cursor-pointer"
           >
             Enviar
           </button>

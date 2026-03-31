@@ -8,12 +8,22 @@ export function useGame() {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    startGame();
+    const savedProgress = localStorage.getItem('cretaceous_progress');
+    if (savedProgress) {
+      setMessages(JSON.parse(savedProgress));
+    } else {
+      startGame();
+    }
   }, [])
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      localStorage.setItem('cretaceous_progress', JSON.stringify(messages));
+    }
+  }, [messages]);
 
   const startGame = async () => {
     setIsLoading(true);
-
     try {
       const response = await fetch('api/generate-story', {
         method: 'POST', 
@@ -25,7 +35,6 @@ export function useGame() {
       }
 
       const data = await response.json();
-
       const messageId = `msg-${Date.now()}`;
       const newMessage: GameMessage = {
         id: messageId,
@@ -42,6 +51,14 @@ export function useGame() {
       setIsLoading(false);
     }
   }
+
+  const resetGame = () => {
+    if (confirm("¿Confirmar reinicio del Protocolo? Se perderán todos los datos del sector actual.")) {
+      localStorage.removeItem('cretaceous_progress');
+      setMessages([]);
+      startGame();
+    }
+  };
 
   const generateImage = async (imagePrompt: string, messageId: string) => {
     try {
@@ -128,5 +145,5 @@ export function useGame() {
     setInput(e.target.value)
   }
 
-  return { messages, input, isLoading, setInput, handleSubmit, handleInputChange };
+  return { messages, input, isLoading, setInput, handleSubmit, handleInputChange, resetGame };
 }

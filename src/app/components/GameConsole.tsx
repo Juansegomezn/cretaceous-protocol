@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { Typewriter } from "./TypeWritter";
 
 export default function GameConsole() {
-  const { messages, input, isLoading, handleSubmit, handleInputChange } = useGame();
+  const { messages, input, isLoading, handleSubmit, handleInputChange, resetGame } = useGame();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -18,6 +18,12 @@ export default function GameConsole() {
       {/* System Header */}
       <div className="bg-green-900/20 p-2 border-b border-green-900/50 flex justify-between text-xs text-green-500">
         <span>SISTEMA: CRETACEOUS_PROTOCOL_V1.0</span>
+        <button 
+          onClick={resetGame}
+          className="text-[10px] px-2 border border-red-900/50 text-red-700 hover:bg-red-900 hover:text-white transition-colors uppercase font-bold cursor-pointer"
+        >
+          [ Reiniciar Protocolo ]
+        </button>
         <span className="animate-pulse">● EN LINEA</span>
       </div>
       {/* Messages Container */}

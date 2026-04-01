@@ -1,4 +1,4 @@
-import { google } from "@ai-sdk/google";
+import { groq } from "@ai-sdk/groq";
 import { generateText } from "ai";
 import { type NextRequest, NextResponse } from "next/server";
 import { GAME_PROMPTS } from "@/lib/prompts";
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     ;
 
     const { text } = await generateText({
-      model: google('gemini-2.5-flash-lite'),
+      model: groq('llama-3.3-70b-versatile'),
       prompt,
       temperature: GAME_CONFIG.MODEL_SETTINGS.TEMPERATURE,
       maxOutputTokens: GAME_CONFIG.MODEL_SETTINGS.MAX_TOKENS

@@ -58,7 +58,7 @@ Cretaceous Protocol is an immersive narrative RPG experience where survival, cho
 
 ### AI & Generative Services
 - **Vercel AI SDK** – Unified interface for LLM streaming and interactions
-- **Google Gemini 2.5 Flash Lite** – Fast, efficient narrative generation
+- **Groq LPU Inference** – Ultra-low latency narrative generation (Llama 3.3 70B).
 - **Pollinations AI (OpenAI-compatible)** – High-fidelity image synthesis using the **Flux** model.
 
 ### Development & Quality
@@ -147,13 +147,13 @@ cd cretaceous-protocol
 ### Step 2: Environment Configuration
 Create `.env.local` in the project root:
 ```env
-GOOGLE_GENERATIVE_AI_API_KEY=your_google_gemini_api_key
+GROQ_API_KEY=your_groq_api_key
 POLLINATIONS_API_KEY=your_pollinations_api_token
 ```
 
 Obtain keys from:
-- [Google AI Studio](https://aistudio.google.com) – Gemini API
-- [Hugging Face](https://huggingface.co/settings/tokens) – Inference API token
+- [Groq AI](https://console.groq.com/keys) – Groq API key
+- [Pollinations AI](https://enter.pollinations.ai/) – Pollinations API key
 
 ### Step 3: Install Dependencies
 ```bash

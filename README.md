@@ -33,6 +33,8 @@ Cretaceous Protocol is an immersive narrative RPG experience where survival, cho
 - **Intelligent Scrolling** – Automatic viewport management for optimal readability
 - **System Alerts** – CRT scanlines and Phosphor Green aesthetic evoke classic terminal interfaces
 - **Custom Animation** – Framer Motion transitions for UI interactions
+- **Custom Terminal Modals** – Replaced native browser alerts with high-fidelity, animated CRT-style modals for critical system actions (e.g., Reset Protocol).
+- **Framer Motion Orchestration** – Smooth entrance/exit animations for UI elements, maintaining the retro-hardware feel.
 
 ### Narrative Resilience
 - **API Quota Handling** – Graceful degradation with in-world narrative explanations
@@ -47,7 +49,7 @@ Cretaceous Protocol is an immersive narrative RPG experience where survival, cho
 - **Next.js 16.1** – App Router architecture with React 19
 - **TypeScript** – Strong type safety across codebase
 - **Tailwind CSS 4** – Utility-first styling with Phosphor Green Terminal Theme
-- **Framer Motion** – Smooth transitions and CRT effect animations
+- **Framer Motion** – Advanced UI animations, layout transitions, and specialized CRT/Scanline modal effects.
 - **Lucide Icons** – Minimal icon library for terminal-style UI
 
 ### AI & Generative Services
@@ -77,7 +79,8 @@ src/
 │   │   └── generate-image/     # Hugging Face endpoint (visual synthesis)
 │   ├── components/
 │       ├── GameConsole.tsx     # Primary UI container & state orchestration
-│       └── Typewriter.tsx      # Character-by-character text renderer
+│       ├── Typewriter.tsx      # Character-by-character text renderer
+│       └── ResetModal.tsx      # System alert & confirmation interface
 │   └── hooks/
 │       └── useGame.ts          # Central game state machine
 │            ├── Message management

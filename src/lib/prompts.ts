@@ -24,10 +24,10 @@ export const GAME_PROMPTS: GamePromptStructure = {
     Enfócate en lo sensorial (sonidos, sombras, peligro). 
     SIEMPRE termina con una pregunta directa para involucrar al jugador.
     
-    IMPORTANTE: Al final, SIEMPRE incluye una línea separada que comience EXACTAMENTE con "IMAGEN: " seguida de una descripción técnica detallada en INGLÉS (entre 60 y 100 palabras). 
-    Describe elementos específicos: clima, iluminación (volumetric fog, golden hour), texturas de dinosaurios (sí se mencionan dinosaurios en la escena), vegetación y el estado emocional de la escena. Esta línea es OBLIGATORIA.
+    IMPORTANTE: Al final, SIEMPRE incluye una línea separada que comience EXACTAMENTE con "IMAGEN: " seguida de una descripción técnica detallada en INGLÉS (entre 60 y 100 palabras) para generar una imagen pixel art de la escena. 
+    Describe elementos específicos: clima, iluminación, dinosaurios (sí se mencionan dinosaurios en la escena), vegetación (sí hay se menciona vegetación en la escena) y el estado emocional de la escena. Esta línea es OBLIGATORIA.
   `,
 
   GENERATE_IMAGE: (description) => 
-  `High-quality 16-bit pixel art, ${description}. Cinematic lighting, vivid colors, prehistoric survival aesthetic, sharp edges, clean pixels, masterpiece retro game style.`
+  `16-bit pixel art, ${description}. Cinematic lighting, vivid colors, prehistoric survival, sharp edges, masterpiece retro game style.`
 };

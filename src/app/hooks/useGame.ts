@@ -6,6 +6,7 @@ export function useGame() {
   const [messages, setMessages] = useState<GameMessage[]>([])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [isResetModalOpen, setIsResetModalOpen] = useState(false)
 
   useEffect(() => {
     const savedProgress = localStorage.getItem('cretaceous_progress');
@@ -51,13 +52,15 @@ export function useGame() {
       setIsLoading(false);
     }
   }
+  const handleResetClick = () => {
+    setIsResetModalOpen(true);
+  };
 
-  const resetGame = () => {
-    if (confirm("¿Confirmar reinicio del Protocolo? Se perderán todos los datos del sector actual.")) {
-      localStorage.removeItem('cretaceous_progress');
-      setMessages([]);
-      startGame();
-    }
+  const confirmReset = () => {
+    localStorage.removeItem('cretaceous_progress');
+    setMessages([]);
+    setIsResetModalOpen(false);
+    startGame();
   };
 
   const generateImage = async (imagePrompt: string, messageId: string) => {
@@ -154,5 +157,15 @@ export function useGame() {
     setInput(e.target.value)
   }
 
-  return { messages, input, isLoading, setInput, handleSubmit, handleInputChange, resetGame };
+  return { 
+    messages, 
+    input, 
+    isLoading, 
+    isResetModalOpen,
+    setIsResetModalOpen,
+    confirmReset,
+    handleResetClick,    
+    handleSubmit, 
+    handleInputChange
+  };
 }

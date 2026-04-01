@@ -2,9 +2,10 @@
 import { useGame } from "../hooks/useGame";
 import { useEffect, useRef } from "react";
 import { Typewriter } from "./TypeWritter";
+import { ResetModal } from "./ResetModal";
 
 export default function GameConsole() {
-  const { messages, input, isLoading, handleSubmit, handleInputChange, resetGame } = useGame();
+  const { messages, input, isLoading, handleSubmit, handleInputChange, isResetModalOpen, setIsResetModalOpen, handleResetClick, confirmReset } = useGame();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function GameConsole() {
       <div className="bg-green-900/20 p-2 border-b border-green-900/50 flex justify-between items-center text-xs text-green-500">
         <span>SISTEMA: CRETACEOUS_PROTOCOL_V1.0</span>
         <button 
-          onClick={resetGame}
+          onClick={handleResetClick}
           className="text-[15px] px-2 border border-red-900/50 text-red-700 hover:bg-red-900 hover:text-white transition-colors uppercase font-bold cursor-pointer"
         >
           [ Reiniciar Protocolo ]
@@ -98,6 +99,14 @@ export default function GameConsole() {
           </button>
         </div>
       </form>
+
+      <ResetModal
+        isOpen={isResetModalOpen}
+        onClose={() => setIsResetModalOpen(false)}
+        onConfirm={confirmReset}
+        title="ALERTA DE SISTEMA: REINICIO REQUERIDO"
+        message="¿Reiniciar protocolo? Se borrarán todos los datos del protocolo actual."
+      />
     </div>
   );
 }

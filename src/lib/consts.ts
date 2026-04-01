@@ -20,6 +20,6 @@ export const GAME_CONFIG = {
   },
   MODEL_SETTINGS: {
     TEMPERATURE: 0.7,
-    MAX_TOKENS: 500
+    MAX_TOKENS: 400
   }
 };

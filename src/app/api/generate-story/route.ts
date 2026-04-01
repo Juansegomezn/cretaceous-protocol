@@ -16,16 +16,18 @@ export async function POST(request: NextRequest) {
 
     const { text } = await generateText({
       model: google('gemini-2.5-flash-lite'),
-      prompt
+      prompt,
+      temperature: GAME_CONFIG.MODEL_SETTINGS.TEMPERATURE,
+      maxOutputTokens: GAME_CONFIG.MODEL_SETTINGS.MAX_TOKENS
     })
 
     const parts = text.split(GAME_CONFIG.IMAGE.SEPARATOR);
     const story = parts[0]?.trim() || "Comunicación interrumpida...";
     
     const imagePrompt = {
-      description: parts[1]?.trim() || "cinematic prehistoric landscape, jungle, mist"
+      description: parts[1]?.trim() || GAME_CONFIG.IMAGE.DEFAULT_PROMPT
     };
-    
+
     return NextResponse.json({ story, imagePrompt });
   } catch (error: any) {
     const lastError = error.lastError || error;

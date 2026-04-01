@@ -23,10 +23,11 @@ export const GAME_PROMPTS: GamePromptStructure = {
     Describe las consecuencias en MÁXIMO 2 párrafos cortos (máximo 3 frases por párrafo). 
     Enfócate en lo sensorial (sonidos, sombras, peligro). 
     SIEMPRE termina con una pregunta directa para involucrar al jugador.
-
-    IMPORTANTE: Al final, SIEMPRE incluye una línea separada que comience EXACTAMENTE con "IMAGEN: " seguida de una descripción breve en inglés para generar una imagen pixel art de la nueva escena (máximo 50 palabras). Esta línea es OBLIGATORIA.
+    
+    IMPORTANTE: Al final, SIEMPRE incluye una línea separada que comience EXACTAMENTE con "IMAGEN: " seguida de una descripción técnica detallada en inglés (entre 60 y 100 palabras). 
+    Describe elementos específicos: clima, iluminación (volumetric fog, golden hour), texturas de dinosaurios (sí se mencionan dinosaurios en la escena), vegetación y el estado emocional de la escena. Esta línea es OBLIGATORIA.
   `,
 
   GENERATE_IMAGE: (description) => 
-    `16-bit pixel art, wide shot, cinematic lighting, vivid colors, prehistoric survival: ${description}. Sharp edges, retro game aesthetic.`
+  `High-quality 16-bit pixel art, ${description}. Cinematic lighting, vivid colors, prehistoric survival aesthetic, sharp edges, clean pixels, masterpiece retro game style.`
 };

@@ -21,7 +21,7 @@ export default function GameConsole() {
         <span>SISTEMA: CRETACEOUS_PROTOCOL_V1.0</span>
         <button 
           onClick={handleResetClick}
-          className="text-[15px] px-2 border border-red-900/50 text-red-700 hover:bg-red-900 hover:text-white transition-colors uppercase font-bold cursor-pointer"
+          className="text-[15px] px-2 border border-red-900/50 text-red-700 hover:bg-red-900 hover:text-white uppercase font-bold"
         >
           [ Reiniciar Protocolo ]
         </button>
@@ -93,7 +93,7 @@ export default function GameConsole() {
           <button 
             type="submit" 
             disabled={isLoading || !input.trim()}
-            className="px-4 py-2 max-h-10 bg-green-900/40 text-green-500 border border-green-700 hover:bg-green-800/50 disabled:opacity-30 transition-all uppercase text-xs font-bold cursor-pointer"
+            className="px-4 py-2 max-h-10 bg-green-900/40 text-green-500 border border-green-700 hover:bg-green-800/50 disabled:opacity-30 disabled:cursor-not-allowed uppercase text-xs font-bold"
           >
             Enviar
           </button>

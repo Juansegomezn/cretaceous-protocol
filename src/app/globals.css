@@ -126,6 +126,10 @@
   html {
     @apply font-sans;
   }
+  button {
+    cursor: pointer;
+    @apply transition-colors duration-200 ease-in-out;
+  }
 }
 
 @layer utilities {

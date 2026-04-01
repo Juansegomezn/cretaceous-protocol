@@ -11,7 +11,7 @@ export const GAME_PROMPTS: GamePromptStructure = {
     2. Tono directo, frío y tenso.
     3. Termina preguntando qué decide hacer el jugador.  
     
-    IMPORTANTE: Al final, SIEMPRE incluye una línea separada que comience EXACTAMENTE con "IMAGEN: " seguida de una descripción breve en inglés para generar una imagen pixel art de la escena inicial (máximo 50 palabras). Esta línea es OBLIGATORIA.
+    IMPORTANTE: Al final, SIEMPRE incluye una línea separada que comience EXACTAMENTE con "IMAGEN: " seguida de una descripción breve en INGLÉS para generar una imagen pixel art de la escena inicial (máximo 50 palabras). Esta línea es OBLIGATORIA.
   `,
     
   CONTINUE_STORY: (historyText, userMessage) => `
@@ -24,7 +24,7 @@ export const GAME_PROMPTS: GamePromptStructure = {
     Enfócate en lo sensorial (sonidos, sombras, peligro). 
     SIEMPRE termina con una pregunta directa para involucrar al jugador.
     
-    IMPORTANTE: Al final, SIEMPRE incluye una línea separada que comience EXACTAMENTE con "IMAGEN: " seguida de una descripción técnica detallada en inglés (entre 60 y 100 palabras). 
+    IMPORTANTE: Al final, SIEMPRE incluye una línea separada que comience EXACTAMENTE con "IMAGEN: " seguida de una descripción técnica detallada en INGLÉS (entre 60 y 100 palabras). 
     Describe elementos específicos: clima, iluminación (volumetric fog, golden hour), texturas de dinosaurios (sí se mencionan dinosaurios en la escena), vegetación y el estado emocional de la escena. Esta línea es OBLIGATORIA.
   `,
 

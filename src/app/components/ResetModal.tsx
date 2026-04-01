@@ -29,16 +29,16 @@ export const ResetModal = ({ isOpen, onClose, onConfirm, title, message }: Modal
               {message}
             </p>
 
-            <div className="flex gap-4 justify-end font-mono">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end font-mono mt-4">
               <button 
                 onClick={onClose}
-                className="px-4 py-2 text-red-900 border border-red-900/30 hover:bg-red-900/10 transition-colors uppercase text-xs"
+                className="w-full sm:w-auto px-4 py-3 sm:py-2 text-red-900 border border-red-900/30 hover:bg-red-900/10 uppercase text-xs"
               >
                 [ Cancelar ]
               </button>
               <button 
                 onClick={onConfirm}
-                className="px-4 py-2 bg-red-900 text-black font-bold hover:bg-red-700 transition-colors uppercase text-xs shadow-[0_0_10px_rgba(153,27,27,0.5)]"
+                className="w-full sm:w-auto px-4 py-3 sm:py-2 bg-red-900 text-black font-bold hover:bg-red-700 uppercase text-xs"
               >
                 Confirmar Reinicio
               </button>

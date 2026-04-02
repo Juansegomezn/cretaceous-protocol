@@ -19,10 +19,10 @@ export const GAME_CONFIG = {
     SEPARATOR: 'IMAGEN: '
   },
   MODEL_SETTINGS: {
-    TEMPERATURE: 0.7,
+    TEMPERATURE: 0.5,
     MAX_TOKENS: 500
   },
   USER: {
-    MAX_WORDS: 30
+    MAX_WORDS: 25
   }
 };

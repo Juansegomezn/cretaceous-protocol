@@ -19,7 +19,7 @@ export const GAME_CONFIG = {
     SEPARATOR: 'IMAGEN: '
   },
   MODEL_SETTINGS: {
-    TEMPERATURE: 0.5,
+    TEMPERATURE: 0.6,
     MAX_TOKENS: 500
   },
   USER: {

@@ -19,6 +19,9 @@ export const GAME_PROMPTS: GamePromptStructure = {
     
     Historial: ${historyText}
     Acción del Jugador: "${userMessage}"
+    
+    REGLA CRÍTICA: Prohibido repetir descripciones previas. 
+    La historia DEBE avanzar cronológicamente. Si el jugador está paralizado, duda, es pasivo o introspectivo, describe cómo el entorno CAMBIA a su alrededor (algo del entorno cambia, un evento de peligro inminente se aproxima, amplias en su introspección).
 
     Describe las consecuencias en MÁXIMO 2 párrafos cortos (máximo 3 frases por párrafo). 
     Enfócate en lo sensorial (sonidos, sombras, peligro). 

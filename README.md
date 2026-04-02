@@ -21,6 +21,7 @@ Cretaceous Protocol is an immersive narrative RPG experience where survival, cho
 ### Adaptive Narrative Engine
 - **Dynamic Story Generation** – Real-time narrative evolution based on user actions via Google Gemini 2.5 Flash Lite
 - **Contextual Continuity** – Prompt engineering maintains narrative coherence across extended gameplay sessions
+- **Input Constraints** – Enforced word limit per turn to simulate terminal buffer restrictions and encourage concise, tactical decision-making.
 - **Failure State Integration** – API errors seamlessly woven into the narrative ("Satellite Signal Lost")
 
 ### Visual Synthesis

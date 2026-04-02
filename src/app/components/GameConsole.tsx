@@ -5,7 +5,7 @@ import { Typewriter } from "./TypeWritter";
 import { ResetModal } from "./ResetModal";
 
 export default function GameConsole() {
-  const { messages, input, isLoading, handleSubmit, handleInputChange, isResetModalOpen, setIsResetModalOpen, handleResetClick, confirmReset } = useGame();
+  const { messages, input, isLoading, handleSubmit, handleInputChange, isResetModalOpen, setIsResetModalOpen, handleResetClick, confirmReset, wordCount, maxWords } = useGame();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -69,12 +69,20 @@ export default function GameConsole() {
       </div>
       {/* Command Input */}
       <form onSubmit={handleSubmit} className="p-3 md:p-4 bg-green-900/10 border-t border-green-900/50">
+        <div className="flex justify-end mb-1">
+          <span className={`text-[10px] font-bold uppercase transition-colors ${
+            wordCount >= maxWords ? 'text-red-500 animate-pulse' : 'text-green-500'
+          }`}>
+            {wordCount >= maxWords ? 'Límite alcanzado' : `Palabras: ${wordCount}/${maxWords}`}
+          </span>
+        </div>
+
         <div className="flex gap-2 md:gap-3 items-center">
           <span className="text-green-500 mb-2 font-bold hidden sm:inline">{'>'}</span>
           <textarea
             value={input}
             onChange={handleInputChange}
-            placeholder="Escribe tu acción..."
+            placeholder={wordCount >= maxWords ? "Límite alcanzado..." : "Escribe tu acción..."}
             className="flex-1 bg-transparent border-none outline-none text-green-500 text-sm md:text-base resize-none py-2 px-1 font-mono leading-tight custom-terminal-scroll"            
             rows={1}
             onKeyDown={(e) => {
@@ -87,7 +95,7 @@ export default function GameConsole() {
           />
           <button 
             type="submit" 
-            disabled={isLoading || !input.trim()}
+            disabled={isLoading || !input.trim() || wordCount > maxWords}
             className="px-3 md:px-5 py-2 h-10 bg-green-900/30 text-green-500 border border-green-700/50 hover:bg-green-800/40 disabled:opacity-20 uppercase text-[10px] md:text-xs font-bold active:bg-green-700"
           >
             Enviar

@@ -1,3 +1,4 @@
+import { GAME_CONFIG } from "@/lib/consts";
 import { GameMessage, GenerateStoryResponse } from "@/lib/types";
 import { useState, useEffect } from "react";
 
@@ -7,6 +8,7 @@ export function useGame() {
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isResetModalOpen, setIsResetModalOpen] = useState(false)
+  const [wordCount, setWordCount] = useState(0);
 
   useEffect(() => {
     const savedProgress = localStorage.getItem('cretaceous_progress');
@@ -145,16 +147,21 @@ export function useGame() {
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const textarea = e.target;
-    textarea.style.height = 'auto';
-    
-    // Define height limit (approx 24px per line * 4 = 96px)
-    const maxHeight = 96; 
-    const scrollHeight = textarea.scrollHeight;
+    const value = e.target.value;
+    const words = value.trim().split(/\s+/).filter(word => word.length > 0);
+    const currentWordCount = words.length;
+    const nativeEvent = e.nativeEvent as InputEvent;
+    const maxWords = GAME_CONFIG.USER.MAX_WORDS;
 
-    textarea.style.height = `${Math.min(scrollHeight, maxHeight)}px`;
-
-    setInput(e.target.value)
+    if (currentWordCount <= maxWords || nativeEvent.inputType === 'deleteContentBackward') {
+      const textarea = e.target;
+      textarea.style.height = 'auto';
+      const maxHeight = 96; 
+      textarea.style.height = `${Math.min(textarea.scrollHeight, maxHeight)}px`;
+      
+      setWordCount(currentWordCount);
+      setInput(value);
+    }
   }
 
   return { 
@@ -166,6 +173,8 @@ export function useGame() {
     confirmReset,
     handleResetClick,    
     handleSubmit, 
-    handleInputChange
+    handleInputChange,
+    wordCount,
+    maxWords: GAME_CONFIG.USER.MAX_WORDS
   };
 }

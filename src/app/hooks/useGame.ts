@@ -9,6 +9,7 @@ export function useGame() {
   const [isLoading, setIsLoading] = useState(false)
   const [isResetModalOpen, setIsResetModalOpen] = useState(false)
   const [wordCount, setWordCount] = useState(0);
+  const maxWords = GAME_CONFIG.USER.MAX_WORDS;
 
   useEffect(() => {
     const savedProgress = localStorage.getItem('cretaceous_progress');
@@ -100,7 +101,7 @@ export function useGame() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    if (!input.trim() || isLoading) return
+    if (!input.trim() || isLoading || wordCount > maxWords) return;
 
     const userMessage: GameMessage = {
       id: crypto.randomUUID(),
@@ -110,6 +111,7 @@ export function useGame() {
 
     setIsLoading(true)
     setInput('')
+    setWordCount(0)
     setMessages(prevMessages => [...prevMessages, userMessage])
 
     try {
@@ -151,7 +153,6 @@ export function useGame() {
     const words = value.trim().split(/\s+/).filter(word => word.length > 0);
     const currentWordCount = words.length;
     const nativeEvent = e.nativeEvent as InputEvent;
-    const maxWords = GAME_CONFIG.USER.MAX_WORDS;
 
     if (currentWordCount <= maxWords || nativeEvent.inputType === 'deleteContentBackward') {
       const textarea = e.target;
@@ -175,6 +176,6 @@ export function useGame() {
     handleSubmit, 
     handleInputChange,
     wordCount,
-    maxWords: GAME_CONFIG.USER.MAX_WORDS
+    maxWords
   };
 }
